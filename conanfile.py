@@ -59,7 +59,15 @@ class KdnssdConan(ConanFile):
             self.cpp_info.includedirs = ["include/KF6/KDNSSD"]
             
             if self.settings.os == "Linux":
-                self.cpp_info.system_libs = ["avahi-client", "avahi-common"]
+                self.cpp_info.system_libs = [
+                                "avahi-client", 
+                                "avahi-common",
+                                "Qt6Core", 
+                                "Qt6Network", 
+                                "Qt6DBus" 
+                            ]
 
-            self.output.warning("KDNSSD requires 'mdns4_minimal' to be enabled in /etc/nsswitch.conf for hostname resolution.")
+                self.cpp_info.includedirs.append("/usr/include/qt6")
+
+                self.output.warning("KDNSSD requires 'mdns4_minimal' to be enabled in /etc/nsswitch.conf for hostname resolution.")
 
